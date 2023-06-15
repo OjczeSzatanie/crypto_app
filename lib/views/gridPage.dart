@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crypto_app/models/crypto_model.dart';
 import 'package:crypto_app/provider/apicall.dart';
 import 'package:crypto_app/views/detailsPage.dart';
@@ -41,7 +42,11 @@ class _GridPageState extends State<GridPage> {
                         return Card(
                           child: ListTile(
                           subtitle: Center(child:
-                          Image.network('https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/128/color/'+ '${cryptoData.symbol.toString().toLowerCase()}' '.png'),),
+                          CachedNetworkImage(
+                            imageUrl: 'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/128/color/'+ '${cryptoData.symbol.toString().toLowerCase()}' '.png',
+                            placeholder: (context, url) => CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => Icon(Icons.error),),
+                          ),
                             title: Text('Rank: ${cryptoData.rank} ${cryptoData.name}'),
                           trailing: const Icon(Icons.chevron_right_outlined),
                           onTap: (() => {openPage(context, cryptoData)}),

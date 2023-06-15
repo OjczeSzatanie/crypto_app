@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crypto_app/models/crypto_model.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,10 @@ class DetailsPage extends StatelessWidget {
                 const SizedBox(
                   height: 20.0,
                 ),
-                Image.network('https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/128/color/'+ '${cryptoData.symbol.toString().toLowerCase()}' '.png'),
+                CachedNetworkImage(
+                  imageUrl: 'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/128/color/'+ '${cryptoData.symbol.toString().toLowerCase()}' '.png',
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),),
                 const SizedBox(
                   height: 20.0,
                 ),

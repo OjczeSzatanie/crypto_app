@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class CryptoService {
   Future<List<CryptoData>> getCrypto() async {
     final response = await http
-        .get(Uri.parse("hfirsrttps://api.coincap.io/v2/assets"));
+        .get(Uri.parse("https://api.coincap.io/v2/assets"));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crypto_app/models/crypto_model.dart';
 import 'package:crypto_app/provider/apicall.dart';
 import 'package:crypto_app/views/detailsPage.dart';
@@ -43,7 +44,10 @@ class _ListPageState extends State<ListPage> {
                         return Card(
                           child:  ListTile(
 
-                            leading: Image.network('https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/128/color/'+ '${cryptoData.symbol.toString().toLowerCase()}' '.png'),
+                            leading: CachedNetworkImage(
+                              imageUrl: 'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/128/color/'+ '${cryptoData.symbol.toString().toLowerCase()}' '.png',
+                              placeholder: (context, url) => CircularProgressIndicator(),
+                              errorWidget: (context, url, error) => Icon(Icons.error),),
                           title: Text('${cryptoData.name}'),
                           subtitle: Text('"USD" + ${cryptoData.priceUsd}'),
                           trailing: const Icon(Icons.chevron_right_outlined),
