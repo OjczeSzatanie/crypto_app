@@ -1,3 +1,5 @@
+import 'package:crypto_app/models/crypto_model.dart';
+import 'package:crypto_app/provider/apicall.dart';
 import 'package:crypto_app/views/gridPage.dart';
 import 'package:crypto_app/views/listPage.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,15 @@ class HomePage extends StatefulWidget {
 
 
 class _MyHomeState extends State<HomePage> {
+
+  late Future<List<CryptoData>> futureCryptos;
+
+  @override
+  void initState() {
+    super.initState();
+    futureCryptos = CryptoService().getCrypto();
+  }
+
   @override
   Widget build(BuildContext context){
     return MaterialApp(
@@ -28,7 +39,7 @@ class _MyHomeState extends State<HomePage> {
               ),
 
               body: TabBarView(
-                  children: [ListPage(), GridPage()]),
+                  children: [ListPage(futurecryptos: futureCryptos,), GridPage()]),
             ))
     );
   }

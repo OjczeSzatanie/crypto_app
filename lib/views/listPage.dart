@@ -5,20 +5,16 @@ import 'package:crypto_app/views/detailsPage.dart';
 import 'package:flutter/material.dart';
 
 class ListPage extends StatefulWidget {
-  const ListPage({super.key});
+   ListPage({super.key, required this.futurecryptos});
+
+   Future<List<CryptoData>> futurecryptos;
 
   @override
   State<ListPage> createState() => _ListPageState();
 }
 
 class _ListPageState extends State<ListPage> {
-  late Future<List<CryptoData>> futureCryptos;
 
-  @override
-  void initState() {
-    super.initState();
-    futureCryptos = CryptoService().getCrypto();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +27,7 @@ class _ListPageState extends State<ListPage> {
             color: Colors.blueAccent,
             child: Center(
               child: FutureBuilder<List<CryptoData>>(
-                future: futureCryptos,
+                future: widget.futurecryptos,
                 builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     return ListView.separated(
@@ -49,7 +45,7 @@ class _ListPageState extends State<ListPage> {
                               placeholder: (context, url) => CircularProgressIndicator(),
                               errorWidget: (context, url, error) => Icon(Icons.error),),
                           title: Text('${cryptoData.name}'),
-                          subtitle: Text('"USD" + ${cryptoData.priceUsd}'),
+                          subtitle: Text('${cryptoData.priceUsd} USD'),
                           trailing: const Icon(Icons.chevron_right_outlined),
                           onTap: (() => {openPage(context, cryptoData)}),
                           ));
@@ -66,7 +62,7 @@ class _ListPageState extends State<ListPage> {
             onRefresh: () async {
               var cryptos = await CryptoService().getCrypto();
               setState(() {
-                futureCryptos = Future.value(cryptos);
+                widget.futurecryptos = Future.value(cryptos);
               });
             }));
   }
