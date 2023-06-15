@@ -25,21 +25,25 @@ class _MyHomeState extends State<HomePage> {
   @override
   Widget build(BuildContext context){
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: new ThemeData(scaffoldBackgroundColor: Colors.red[50]),
         home: DefaultTabController(
             length: 2,
             child:Scaffold(
-              backgroundColor: Colors.green,
               appBar: AppBar(
+                backgroundColor: Colors.deepOrange[400],
                 leading: IconButton(onPressed: (){
                   Navigator.pop(context);
                 }, icon: Icon(Icons.back_hand)),
                 title: Text('CryptoApp'),
-                bottom: TabBar(tabs: <Widget> [Tab (icon:Icon(Icons.view_list_rounded), ),
+                bottom: TabBar(
+                    indicatorColor: Colors.deepOrangeAccent[100],
+                    tabs: <Widget> [Tab (icon:Icon(Icons.view_list_rounded), ),
                   Tab(icon: Icon(Icons.grid_view_rounded),)]),
               ),
 
               body: TabBarView(
-                  children: [ListPage(futurecryptos: futureCryptos,), GridPage()]),
+                  children: [ListPage(futurecryptos: futureCryptos,), GridPage(futurecryptos: futureCryptos)]),
             ))
     );
   }

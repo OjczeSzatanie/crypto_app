@@ -21,6 +21,7 @@ class _ListPageState extends State<ListPage> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
+          backgroundColor: Colors.deepOrange[300],
           title: const Text('List View'),
         ),
         body: RefreshIndicator(
@@ -39,13 +40,12 @@ class _ListPageState extends State<ListPage> {
                         CryptoData cryptoData = snapshot.data?[index];
                         return Card(
                           child:  ListTile(
-
                             leading: CachedNetworkImage(
                               imageUrl: 'https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/128/color/'+ '${cryptoData.symbol.toString().toLowerCase()}' '.png',
                               placeholder: (context, url) => CircularProgressIndicator(),
                               errorWidget: (context, url, error) => Icon(Icons.error),),
                           title: Text('${cryptoData.name}'),
-                          subtitle: Text('${cryptoData.priceUsd} USD'),
+                          subtitle: Text('Rank: ${cryptoData.rank}'),
                           trailing: const Icon(Icons.chevron_right_outlined),
                           onTap: (() => {openPage(context, cryptoData)}),
                           ));

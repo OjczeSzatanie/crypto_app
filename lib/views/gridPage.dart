@@ -5,33 +5,28 @@ import 'package:crypto_app/views/detailsPage.dart';
 import 'package:flutter/material.dart';
 
 class GridPage extends StatefulWidget {
-  const GridPage({super.key});
+  GridPage({super.key, required this.futurecryptos});
 
+  Future<List<CryptoData>> futurecryptos;
   @override
   State<GridPage> createState() => _GridPageState();
 }
 
 class _GridPageState extends State<GridPage> {
-  late Future<List<CryptoData>> futureCryptos;
-
-  @override
-  void initState() {
-    super.initState();
-    futureCryptos = CryptoService().getCrypto();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
+          backgroundColor: Colors.deepOrange[300],
           title: const Text('Grid View'),
         ),
         body: RefreshIndicator(
             color: Colors.blueAccent,
             child: Center(
               child: FutureBuilder<List<CryptoData>>(
-                future: futureCryptos,
+                future: widget.futurecryptos,
                 builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     return GridView.builder(
@@ -65,7 +60,7 @@ class _GridPageState extends State<GridPage> {
             onRefresh: () async {
               var cryptos = await CryptoService().getCrypto();
               setState(() {
-                futureCryptos = Future.value(cryptos);
+                widget.futurecryptos = Future.value(cryptos);
               });
             }));
   }

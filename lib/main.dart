@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: MyHome()
     );
   }
@@ -66,7 +67,7 @@ class MyHome extends StatelessWidget {
                           child: child,
                         );
                       },
-                      child: const Text("Hello!",
+                      child: const Text("Welcome!",
                         style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold
@@ -90,7 +91,16 @@ class MyHome extends StatelessWidget {
                       );
                     },
                     child: ElevatedButton(
-                      child: const Text('Open route'),
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.hovered))
+                              return Colors.redAccent; //<-- SEE HERE
+                            return Colors.red;
+                          },
+                        ),
+                      ),
+                      child: const Text('Check cryptos'),
                     onPressed: () {
                               Navigator.push(
                               context,MaterialPageRoute(builder: (context)
