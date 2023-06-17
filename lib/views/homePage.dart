@@ -38,12 +38,12 @@ class _MyHomeState extends State<HomePage> {
                 title: Text('CryptoApp'),
                 bottom: TabBar(
                     indicatorColor: Colors.deepOrangeAccent[100],
-                    tabs: <Widget> [Tab (icon:Icon(Icons.view_list_rounded), ),
+                    tabs: const <Widget> [Tab (icon:Icon(Icons.view_list_rounded), ),
                   Tab(icon: Icon(Icons.grid_view_rounded),)]),
               ),
 
               body: TabBarView(
-                  children: [ListPage(futurecryptos: futureCryptos,), GridPage(futurecryptos: futureCryptos)]),
+                  children: [ListPage(futurecryptos: futureCryptos, cryptoList: [],), GridPage(futurecryptos: futureCryptos, cryptoList: [],)]),
             ))
     );
   }

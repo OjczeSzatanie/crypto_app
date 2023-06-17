@@ -5,7 +5,7 @@ import 'package:crypto_app/views/detailsPage.dart';
 import 'package:flutter/material.dart';
 
 class GridPage extends StatefulWidget {
-  GridPage({super.key, required this.futurecryptos});
+  GridPage({super.key, required this.futurecryptos, required List<CryptoData> cryptoList});
 
   Future<List<CryptoData>> futurecryptos;
   @override

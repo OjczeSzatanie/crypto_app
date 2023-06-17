@@ -5,7 +5,7 @@ import 'package:crypto_app/views/detailsPage.dart';
 import 'package:flutter/material.dart';
 
 class ListPage extends StatefulWidget {
-   ListPage({super.key, required this.futurecryptos});
+   ListPage({super.key, required this.futurecryptos, required List<CryptoData> cryptoList});
 
    Future<List<CryptoData>> futurecryptos;
 

@@ -3,6 +3,7 @@ import 'package:crypto_app/models/crypto_model.dart';
 import 'package:http/http.dart' as http;
 
 class CryptoService {
+
   Future<List<CryptoData>> getCrypto() async {
     final response = await http
         .get(Uri.parse("https://api.coincap.io/v2/assets"));

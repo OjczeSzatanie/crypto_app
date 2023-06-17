@@ -13,18 +13,18 @@ class CryptoData {
   final String? explorer;
 
   CryptoData({
-    required this.id,
-    required this.rank,
-    required this.symbol,
-    required this.name,
-    required this.supply,
-    required this.maxSupply,
-    required this.marketCapUsd,
-    required this.volumeUsd24Hr,
-    required this.priceUsd,
-    required this.changePercent24Hr,
-    required this.vwap24Hr,
-    required this.explorer,
+    this.id,
+    this.rank,
+    this.symbol,
+    this.name,
+    this.supply,
+    this.maxSupply,
+    this.marketCapUsd,
+    this.volumeUsd24Hr,
+    this.priceUsd,
+    this.changePercent24Hr,
+    this.vwap24Hr,
+    this.explorer,
   });
 
   factory CryptoData.fromJson(Map<String, dynamic> json) {
